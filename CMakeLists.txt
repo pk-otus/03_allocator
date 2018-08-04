@@ -6,16 +6,25 @@ else()
    project(allocator VERSION 0.0.1)
 endif()
 
-configure_file(version.h.in version.h)
+configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 add_executable(allocator allocator.cpp)
 
 
-set_target_properties(allocator PROPERTIES
-  CXX_STANDARD 14
-  CXX_STANDARD_REQUIRED ON
-  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
-)
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	set_target_properties(allocator PROPERTIES
+		CXX_STANDARD 14
+		CXX_STANDARD_REQUIRED ON
+		COMPILE_OPTIONS -W3 
+	)
+else()
+	set_target_properties(allocator PROPERTIES
+		CXX_STANDARD 14
+		CXX_STANDARD_REQUIRED ON
+		COMPILE_OPTIONS -Wpedantic -Wall -Wextra
+	)
+endif()
+
 
 install(TARGETS allocator RUNTIME DESTINATION bin)
 
