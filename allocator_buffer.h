@@ -44,7 +44,7 @@ namespace allocator
 			num_reserved = BUF;
 		}
 
-		bool ContainsAddress(T* addr)
+		bool ContainsAddress(T* addr) const
 		{
 			return addr >= buffer.get() && addr < buffer.get() + BUF;
 		}

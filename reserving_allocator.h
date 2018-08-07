@@ -9,7 +9,7 @@ namespace allocator
 	{
 	public:
 		virtual ~iBufferedAllocator() = default;
-		virtual void Reserve() const = 0;
+		virtual void reserve() const = 0;
 	};
 
 	template<typename T, size_t BUF> class reserving_allocator : public iBufferedAllocator
@@ -81,9 +81,9 @@ namespace allocator
 			p->~T();
 		}
 
-		void Reserve() const override
+		void reserve() const override
 		{
-			if (parent) parent->Reserve();
+			if (parent) parent->reserve();
 			buffer->CreateBuffer(allocate(BUF));
 		}
 

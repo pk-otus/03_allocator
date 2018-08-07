@@ -8,7 +8,7 @@ endif()
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
-add_executable(allocator allocator.cpp)
+add_executable(allocator main.cpp)
 
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
@@ -34,7 +34,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 
-set(CPACK_PACKAGE_CONTACT vvz.otus@gmail.com)
+set(CPACK_PACKAGE_CONTACT a@a.a)
 
 include (CPack)
 

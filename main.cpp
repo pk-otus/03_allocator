@@ -34,7 +34,7 @@ int main(int, char *[])
 			std::map<int, int, std::less<int>, allocator::reserving_allocator<std::pair<const int, int>, BUFFER_SIZE>>{};
 
 		//same allocator, reserve called
-		m_custom_uses_reserve.get_allocator().Reserve();
+		m_custom_uses_reserve.get_allocator().reserve();
 
 		for (int i = 0, fact = 1; i < BUFFER_SIZE; fact *= ++i)
 		{
@@ -72,7 +72,7 @@ int main(int, char *[])
 		auto cc_custom_alloc = allocator::custom_container<int, allocator::reserving_allocator<int, BUFFER_SIZE >>();
 
 		//same allocator, reserve called
-		cc_custom_alloc.get_allocator().Reserve();
+		cc_custom_alloc.get_allocator().reserve();
 
 		for (int i = 0; i < BUFFER_SIZE; ++i)
 		{
@@ -85,8 +85,6 @@ int main(int, char *[])
 		}
 		std::cout << std::endl;
 	}
-
-	getchar();
 
 	return 0;
 }
