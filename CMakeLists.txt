@@ -6,10 +6,12 @@ else()
    project(allocator VERSION 0.0.1)
 endif()
 
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
+list(REMOVE_ITEM HEADER_FILES ${PROJECT_SOURCE_DIR}/version.h)
+
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
-add_executable(allocator main.cpp)
-
+add_executable(allocator main.cpp ${HEADER_FILES})
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	set_target_properties(allocator PROPERTIES
