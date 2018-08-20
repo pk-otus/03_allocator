@@ -4,9 +4,6 @@
 #include "reserving_allocator.h"
 #include "custom_container.h"
 
-// debug output to console
-#define NDEBUG 1 
-
 int main(int, char *[])
 {
 	const size_t BUFFER_SIZE = 10;

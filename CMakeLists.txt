@@ -6,25 +6,25 @@ else()
    project(allocator VERSION 0.0.1)
 endif()
 
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
-list(REMOVE_ITEM HEADER_FILES ${PROJECT_SOURCE_DIR}/version.h)
+if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+	set(NDEBUG 1)
+endif()
 
-configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
+configure_file(ndebug.h.in ${PROJECT_SOURCE_DIR}/ndebug.h)
+
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
 
 add_executable(allocator main.cpp ${HEADER_FILES})
 
+set_target_properties(allocator PROPERTIES
+	CXX_STANDARD 14
+	CXX_STANDARD_REQUIRED ON
+)
+
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-	set_target_properties(allocator PROPERTIES
-		CXX_STANDARD 14
-		CXX_STANDARD_REQUIRED ON
-		COMPILE_OPTIONS -W3 
-	)
+	set_target_properties(allocator PROPERTIES COMPILE_OPTIONS -W3)
 else()
-	set_target_properties(allocator PROPERTIES
-		CXX_STANDARD 14
-		CXX_STANDARD_REQUIRED ON
-		COMPILE_OPTIONS -Wpedantic -Wall -Wextra
-	)
+	set_target_properties(allocator PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 endif()
 
 
