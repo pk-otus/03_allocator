@@ -17,6 +17,7 @@ namespace allocator
 		allocator_buffer() = default;
 
 		T* TryGetMemory(size_t n) noexcept
+
 		{
 			if (num_reserved >= n)
 			{

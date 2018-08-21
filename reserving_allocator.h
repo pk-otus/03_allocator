@@ -85,6 +85,7 @@ namespace allocator
 		{
 			if (parent) 
 				parent->reserve();
+
 			buffer->CreateBuffer(allocate(BUF));
 		}
 
