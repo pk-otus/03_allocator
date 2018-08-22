@@ -8,13 +8,16 @@ namespace allocator
 {
 	template<typename T, size_t BUF> class allocator_buffer
 	{
+		static_assert(BUF > 0, "incorrect buffer size value");
+
 	public:
 		allocator_buffer			(const allocator_buffer&) = delete;
 		allocator_buffer& operator=	(const allocator_buffer&) = delete;
 
 		allocator_buffer() = default;
 
-		T* TryGetMemory(size_t n)
+		T* TryGetMemory(size_t n) noexcept
+
 		{
 			if (num_reserved >= n)
 			{

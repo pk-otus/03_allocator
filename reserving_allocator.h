@@ -83,7 +83,9 @@ namespace allocator
 
 		void reserve() const override
 		{
-			if (parent) parent->reserve();
+			if (parent) 
+				parent->reserve();
+
 			buffer->CreateBuffer(allocate(BUF));
 		}
 
