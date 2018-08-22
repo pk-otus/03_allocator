@@ -6,10 +6,6 @@ else()
    project(allocator VERSION 0.0.1)
 endif()
 
-if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-	set(NDEBUG 1)
-endif()
-
 configure_file(ndebug.h.in ${PROJECT_SOURCE_DIR}/ndebug.h)
 
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
